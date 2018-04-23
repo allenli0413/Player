@@ -12,7 +12,7 @@ import com.zwyl.liyh.myplayer.ui.fragment.YueDanFragment
  * E-mail: liyh@zhiwyl.com
  * Phone: 15033990609
  * Date: 2018/4/20  Time: 21:27
- * Description:fragmnet管理类
+ * Description:fragmnet管理类 单例
  */
 class FragmentManagerUtil private constructor() {
     val homeFragment by lazy { HomeFragment() }
