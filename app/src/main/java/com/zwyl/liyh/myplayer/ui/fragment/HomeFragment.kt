@@ -12,6 +12,7 @@ import com.zwyl.liyh.myplayer.base.BaseFragment
 import com.zwyl.liyh.myplayer.presenter.impl.HomePresenterImpl
 import com.zwyl.liyh.myplayer.view.HomeView
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.info
 
 /**
  * Author: liyh
@@ -70,5 +71,11 @@ class HomeFragment : BaseFragment(), HomeView {
         //隐藏刷新控件
         srl_fragment_home.isRefreshing = false
         mAdapter.loadMoreDatas(list as ArrayList<HomeItemBean>?)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.destroyView()
+        info { "homeFragment销毁" }
     }
 }
