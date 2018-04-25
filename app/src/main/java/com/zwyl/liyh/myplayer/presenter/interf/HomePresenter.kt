@@ -1,5 +1,7 @@
 package com.zwyl.liyh.myplayer.presenter.interf
 
+import com.zwyl.liyh.myplayer.base.BaseListPresenter
+
 /**
  * Author: liyh
  * E-mail: liyh@zhiwyl.com
@@ -7,10 +9,6 @@ package com.zwyl.liyh.myplayer.presenter.interf
  * Date: 2018/4/23  Time: 18:21
  * Description:
  */
-interface HomePresenter {
-    companion object {
-        val TYPE_INIT_OR_REFRESH = 1
-        val TYPE_LOAD_MORE = 2
-    }
+interface HomePresenter: BaseListPresenter {
 
 }

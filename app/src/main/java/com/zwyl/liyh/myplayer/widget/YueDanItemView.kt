@@ -28,7 +28,7 @@ class YueDanItemView : RelativeLayout {
 
     fun setData(data: YueDanBean.PlayListsBean) {
         Picasso.get().load(data.playListBigPic).placeholder(R.mipmap.music_bg).into(iv_yuedan_item_bg)
-        Picasso.get().load(data.creator?.largeAvatar).placeholder(R.mipmap.music_default_bg).transform(CropCircleTransformation()).into(iv_home_item_avatar)
+        Picasso.get().load("http:${data.creator?.largeAvatar}").placeholder(R.mipmap.music_default_bg).transform(CropCircleTransformation()).into(iv_home_item_avatar)
         tv_yuedan_item_title.text = data.title
         tv_yuedan_item_author.text = data.creator?.nickName
         tv_yuedan_item_count.text = data.videoCount.toString()

@@ -1,12 +1,12 @@
 package com.zwyl.liyh.myplayer.ui.fragment
 
-import android.graphics.Color
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.zwyl.liyh.myplayer.R
+import YueDanBean
 import com.zwyl.liyh.myplayer.adapter.YuedanAdapter
-import com.zwyl.liyh.myplayer.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.zwyl.liyh.myplayer.base.BaseListAdapter
+import com.zwyl.liyh.myplayer.base.BaseListFragment
+import com.zwyl.liyh.myplayer.base.BaseListPresenter
+import com.zwyl.liyh.myplayer.presenter.impl.YuedanPresenterImpl
+import com.zwyl.liyh.myplayer.widget.YueDanItemView
 
 /**
  * Author: liyh
@@ -15,18 +15,12 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Date: 2018/4/20  Time: 21:28
  * Description:悦单fragment
  */
-class YueDanFragment : BaseFragment() {
+class YueDanFragment : BaseListFragment<YueDanBean, YueDanBean.PlayListsBean, YueDanItemView>(){
 
-    val mAdapter by lazy { YuedanAdapter() }
-    val
+    override fun getList(result: YueDanBean?): List<YueDanBean.PlayListsBean>? = result?.playLists
 
-    override fun initView(): View? = View.inflate(activity, R.layout.fragment_home, null)
+    override fun getSelfAdapter(): BaseListAdapter<YueDanBean.PlayListsBean, YueDanItemView> = YuedanAdapter()
 
-    override fun initListener() {
-        recl_fragment_home.layoutManager = LinearLayoutManager(activity)
-        recl_fragment_home.adapter = mAdapter
-        srl_fragment_home.setColorSchemeColors(Color.RED, Color.YELLOW, Color.GREEN)
-        srl_fragment_home.setOnRefreshListener {  }
+    override fun getSelfPresenter(): BaseListPresenter = YuedanPresenterImpl(this)
 
-    }
 }
