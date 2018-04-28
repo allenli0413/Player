@@ -1,3 +1,5 @@
+package com.zwyl.liyh.myplayer.model
+
 /**
  * ClassName:YueDanBean
  * Description:

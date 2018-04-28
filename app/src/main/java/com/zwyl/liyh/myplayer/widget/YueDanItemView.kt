@@ -1,12 +1,12 @@
 package com.zwyl.liyh.myplayer.widget
 
-import YueDanBean
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import com.squareup.picasso.Picasso
 import com.zwyl.liyh.myplayer.R
+import com.zwyl.liyh.myplayer.model.YueDanBean
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.yuedan_item_view.view.*
 

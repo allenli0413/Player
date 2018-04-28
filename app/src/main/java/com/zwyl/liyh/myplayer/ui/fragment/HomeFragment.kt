@@ -1,10 +1,10 @@
 package com.zwyl.liyh.myplayer.ui.fragment
 
-import com.itheima.player.model.bean.HomeItemBean
 import com.zwyl.liyh.myplayer.adapter.HomeAdapter
 import com.zwyl.liyh.myplayer.base.BaseListAdapter
 import com.zwyl.liyh.myplayer.base.BaseListFragment
 import com.zwyl.liyh.myplayer.base.BaseListPresenter
+import com.zwyl.liyh.myplayer.model.HomeItemBean
 import com.zwyl.liyh.myplayer.presenter.impl.HomePresenterImpl
 import com.zwyl.liyh.myplayer.widget.HomeItemView
 

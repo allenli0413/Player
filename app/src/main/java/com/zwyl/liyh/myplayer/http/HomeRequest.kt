@@ -1,6 +1,6 @@
 package com.zwyl.liyh.myplayer.http
 
-import com.itheima.player.model.bean.HomeItemBean
+import com.zwyl.liyh.myplayer.model.HomeItemBean
 import com.zwyl.liyh.myplayer.util.URLProviderUtils
 
 /**

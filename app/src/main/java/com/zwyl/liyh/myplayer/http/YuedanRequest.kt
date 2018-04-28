@@ -1,6 +1,6 @@
 package com.zwyl.liyh.myplayer.http
 
-import YueDanBean
+import com.zwyl.liyh.myplayer.model.YueDanBean
 import com.zwyl.liyh.myplayer.util.URLProviderUtils
 
 /**

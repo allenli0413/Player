@@ -1,10 +1,10 @@
 package com.zwyl.liyh.myplayer.presenter.impl
 
-import YueDanBean
 import com.zwyl.liyh.myplayer.base.BaseListPresenter
 import com.zwyl.liyh.myplayer.base.BaseListView
 import com.zwyl.liyh.myplayer.http.HttpCallBack
 import com.zwyl.liyh.myplayer.http.YuedanRequest
+import com.zwyl.liyh.myplayer.model.YueDanBean
 import com.zwyl.liyh.myplayer.presenter.interf.YuedanPresenter
 
 /**

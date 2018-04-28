@@ -1,4 +1,4 @@
-package com.itheima.player.model.bean
+package com.zwyl.liyh.myplayer.model
 
 data class MvPagerBean(var totalCount: Int, var videos: List<VideosBean>)
 data class VideosBean(
@@ -7,8 +7,9 @@ data class VideosBean(
         var videoSourceTypeName: String, var totalViews: Int, var totalPcViews: Int,
         var totalMobileViews: Int, var totalComments: Int, var url: String,
         var hdUrl: String, var uhdUrl: String, var shdUrl: String, var videoSize: Int,
-        var hdVideoSize: Int,var uhdVideoSize: Int, var shdVideoSize: Int, var duration: Int,
-        var status: Int, var linkId: Int , var playListPic: String,var artists: List<ArtistsBean>)
+        var hdVideoSize: Int, var uhdVideoSize: Int, var shdVideoSize: Long, var duration: Int,
+        var status: Int, var linkId: Int, var playListPic: String, var artists: List<ArtistsBean>)
+
 data class ArtistsBean(var artistId: Int, var artistName: String)
 //class MvPagerBean {
 //    var totalCount: Int = 0

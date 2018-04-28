@@ -1,5 +1,7 @@
 package com.zwyl.liyh.myplayer.view
 
+import com.zwyl.liyh.myplayer.model.MvAreaBean
+
 /**
  * Author: liyh
  * E-mail: liyh@zhiwyl.com
@@ -8,4 +10,6 @@ package com.zwyl.liyh.myplayer.view
  * Description:mv界面View层
  */
 interface MvView {
+    fun onSuccess(result: List<MvAreaBean>)
+    fun onError(msg: String?)
 }

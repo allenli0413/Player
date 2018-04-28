@@ -1,4 +1,4 @@
-package com.itheima.player.model
+package com.zwyl.liyh.myplayer.model
 
 import android.os.Parcel
 import android.os.Parcelable

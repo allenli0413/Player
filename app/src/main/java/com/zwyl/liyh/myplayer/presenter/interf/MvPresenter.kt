@@ -8,4 +8,5 @@ package com.zwyl.liyh.myplayer.presenter.interf
  * Description:mvP层
  */
 interface MvPresenter {
+    fun loadTabData()
 }

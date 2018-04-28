@@ -1,10 +1,10 @@
 package com.zwyl.liyh.myplayer.presenter.impl
 
-import com.itheima.player.model.bean.HomeItemBean
 import com.zwyl.liyh.myplayer.base.BaseListPresenter
 import com.zwyl.liyh.myplayer.base.BaseListView
 import com.zwyl.liyh.myplayer.http.HomeRequest
 import com.zwyl.liyh.myplayer.http.HttpCallBack
+import com.zwyl.liyh.myplayer.model.HomeItemBean
 import com.zwyl.liyh.myplayer.presenter.interf.HomePresenter
 
 /**

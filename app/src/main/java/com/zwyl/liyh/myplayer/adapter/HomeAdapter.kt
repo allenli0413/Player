@@ -1,8 +1,8 @@
 package com.zwyl.liyh.myplayer.adapter
 
 import android.content.Context
-import com.itheima.player.model.bean.HomeItemBean
 import com.zwyl.liyh.myplayer.base.BaseListAdapter
+import com.zwyl.liyh.myplayer.model.HomeItemBean
 import com.zwyl.liyh.myplayer.widget.HomeItemView
 
 /**

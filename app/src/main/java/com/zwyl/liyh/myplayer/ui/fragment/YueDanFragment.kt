@@ -1,10 +1,10 @@
 package com.zwyl.liyh.myplayer.ui.fragment
 
-import YueDanBean
 import com.zwyl.liyh.myplayer.adapter.YuedanAdapter
 import com.zwyl.liyh.myplayer.base.BaseListAdapter
 import com.zwyl.liyh.myplayer.base.BaseListFragment
 import com.zwyl.liyh.myplayer.base.BaseListPresenter
+import com.zwyl.liyh.myplayer.model.YueDanBean
 import com.zwyl.liyh.myplayer.presenter.impl.YuedanPresenterImpl
 import com.zwyl.liyh.myplayer.widget.YueDanItemView
 

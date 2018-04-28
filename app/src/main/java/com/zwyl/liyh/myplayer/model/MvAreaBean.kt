@@ -1,5 +1,4 @@
-package com.itheima.player.model.bean
-
+package com.zwyl.liyh.myplayer.model
 
 /**
  * ClassName:MvAreaBean

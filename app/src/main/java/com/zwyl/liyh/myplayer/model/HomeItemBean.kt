@@ -1,5 +1,4 @@
-package com.itheima.player.model.bean
-
+package com.zwyl.liyh.myplayer.model
 /**
  * ClassName:HomeItemBean
  * Description:home界面每个条目的bean

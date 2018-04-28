@@ -1,8 +1,8 @@
 package com.zwyl.liyh.myplayer.adapter
 
-import YueDanBean
 import android.content.Context
 import com.zwyl.liyh.myplayer.base.BaseListAdapter
+import com.zwyl.liyh.myplayer.model.YueDanBean
 import com.zwyl.liyh.myplayer.widget.YueDanItemView
 
 /**

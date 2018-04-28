@@ -1,7 +1,7 @@
 package com.zwyl.liyh.myplayer.view
 
-import com.itheima.player.model.bean.HomeItemBean
 import com.zwyl.liyh.myplayer.base.BaseListView
+import com.zwyl.liyh.myplayer.model.HomeItemBean
 
 /**
  * Author: liyh

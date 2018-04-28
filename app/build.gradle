@@ -7,11 +7,14 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.zwyl.liyh.myplayer"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
     }
     buildTypes {
         release {
@@ -45,4 +48,7 @@ dependencies {
     implementation 'jp.wasabeef:picasso-transformations:2.2.1'
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation project(':vitamio')
+    implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.2'
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
 }
