@@ -16,17 +16,20 @@ import kotlinx.android.synthetic.main.mv_item_view.view.*
  * Date: 2018/4/27  Time: 21:44
  * Description:
  */
-class MvItemView: RelativeLayout {
+class MvItemView : RelativeLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
     init {
         View.inflate(context, R.layout.mv_item_view, this)
     }
 
-    fun setData(data: VideosBean){
-        tv_mv_item_song.text = data.title
-        tv_mv_item_songer.text = data.artistName
-        Picasso.get().load(data.playListPic).placeholder(R.mipmap.music_bg).into(iv_mv_item_bg)
+    fun setData(data: VideosBean?) {
+        data?.let {
+            tv_mv_item_song.text = it.title
+            tv_mv_item_songer.text = it.artistName
+            Picasso.get().load(it.playListPic).placeholder(R.mipmap.music_bg).into(iv_mv_item_bg)
+        }
     }
 }

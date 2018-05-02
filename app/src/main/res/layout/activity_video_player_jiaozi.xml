@@ -17,6 +17,7 @@
         android:orientation="horizontal">
 
         <RadioButton
+            android:checked="true"
             android:id="@+id/rb1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

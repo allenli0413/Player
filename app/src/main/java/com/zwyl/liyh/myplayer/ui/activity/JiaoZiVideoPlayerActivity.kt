@@ -1,5 +1,7 @@
 package com.zwyl.liyh.myplayer.ui.activity
 
+import android.support.v4.view.ViewPager
+import android.widget.RadioButton
 import cn.jzvd.JZVideoPlayer
 import cn.jzvd.JZVideoPlayerStandard
 import com.zwyl.liyh.myplayer.R
@@ -49,5 +51,28 @@ class JiaoZiVideoPlayerActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         mv_viewpager.adapter = MvPlayerViewPageAdapter(supportFragmentManager)
+        rg.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.rb1 -> mv_viewpager.currentItem = 0
+                R.id.rb2 -> mv_viewpager.currentItem = 1
+                R.id.rb3 -> mv_viewpager.currentItem = 2
+            }
+        }
+
+        mv_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+                //滑动状态改变
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                //页面滚动时调用
+            }
+
+            override fun onPageSelected(position: Int) {
+                //页面被选中
+                val childView = rg.getChildAt(position) as RadioButton
+                childView.isChecked = true
+            }
+        })
     }
 }

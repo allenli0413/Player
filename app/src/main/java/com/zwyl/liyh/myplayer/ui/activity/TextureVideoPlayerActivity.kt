@@ -33,7 +33,7 @@ class TextureVideoPlayerActivity : BaseActivity(), TextureView.SurfaceTextureLis
 
     override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
         //视图销毁
-        mediaPlayer?.run {
+        mediaPlayer.run {
             stop()
             release()
         }
