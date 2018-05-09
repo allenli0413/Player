@@ -13,14 +13,14 @@ import com.zwyl.liyh.myplayer.view.MvView
  * Date: 2018/4/25  Time: 22:31
  * Description:
  */
-class MvPresenterImpl(val mvView: MvView) : MvPresenter,HttpCallBack<List<MvAreaBean>> {
+class MvPresenterImpl(var mvView: MvView?) : MvPresenter,HttpCallBack<List<MvAreaBean>> {
 
     override fun onSuccess(type: Int, result: List<MvAreaBean>) {
-        mvView.onSuccess(result)
+        mvView?.onSuccess(result)
     }
 
     override fun onError(type: Int, msg: String?) {
-        mvView.onError(msg)
+        mvView?.onError(msg)
     }
 
     /**
@@ -28,5 +28,10 @@ class MvPresenterImpl(val mvView: MvView) : MvPresenter,HttpCallBack<List<MvArea
      */
     override fun loadTabData() {
         MvAreaRequest(this).execute()
+    }
+    fun onDestroy() {
+        if (mvView != null) {
+            mvView = null
+        }
     }
 }

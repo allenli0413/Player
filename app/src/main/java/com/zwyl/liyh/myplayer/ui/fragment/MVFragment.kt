@@ -39,4 +39,8 @@ class MVFragment : BaseFragment(), MvView {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
 }
