@@ -17,10 +17,14 @@ import android.view.View
 import com.zwyl.liyh.myplayer.R
 import com.zwyl.liyh.myplayer.adapter.VBangAdapter
 import com.zwyl.liyh.myplayer.base.BaseFragment
+import com.zwyl.liyh.myplayer.model.AudioBean
+import com.zwyl.liyh.myplayer.model.VBangItemBean
+import com.zwyl.liyh.myplayer.ui.activity.AudioPlayerActivity
 import com.zwyl.liyh.myplayer.util.CursorUtil
 import kotlinx.android.synthetic.main.fragment_vbang.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.yesButton
 
 /**
@@ -139,6 +143,13 @@ class VBangFragment : BaseFragment() {
     override fun initListener() {
         vBangAdapter = VBangAdapter(context, null)
         lv_fragment_vbang.adapter = vBangAdapter
+        lv_fragment_vbang.setOnItemClickListener { parent, view, position, id ->
+            //获取条目对应的cursor
+            val cursor = vBangAdapter?.getItem(position) as Cursor
+            //通过cursor获取整个集合
+            val audioList : ArrayList<VBangItemBean> = VBangItemBean.getAudioBeans(cursor)
+            startActivity<AudioPlayerActivity>("list" to audioList, "position" to position)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
