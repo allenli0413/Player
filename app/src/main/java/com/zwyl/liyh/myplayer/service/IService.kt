@@ -7,7 +7,7 @@ package com.zwyl.liyh.myplayer.service
  * @descrip :
  */
 interface IService {
-    fun playItem()
+//    fun playItem()
     fun start()
     fun pause()
     fun stop()
@@ -16,4 +16,9 @@ interface IService {
     fun updatePlayStatus():Boolean?
     fun isPlaying():Boolean?
     fun notfityUpdateUi()
+    fun getDuration(): Int?
+    fun getProgress(): Int?
+    fun setProgress(progress: Int)
+    fun setPlayMode(currentMode: Int)
+    fun getCurMode(): Int
 }
