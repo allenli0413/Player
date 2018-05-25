@@ -14,11 +14,10 @@ object StringUtil {
         val hour = millisecond / HOUR
         val min = millisecond % HOUR / MIN
         val sec = millisecond % MIN / SEC
-        var result = ""
-        if (hour == 0) {
-            result = String.format("%02d:%02d", min, sec)
+        var result = if (hour == 0) {
+            String.format("%02d:%02d", min, sec)
         } else {
-            result = String.format("%02d:%02d:%02d", hour, min, sec)
+            String.format("%02d:%02d:%02d", hour, min, sec)
         }
         return result
     }

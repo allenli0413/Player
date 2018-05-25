@@ -6,7 +6,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
-import com.zwyl.liyh.myplayer.R.id.mode
 import com.zwyl.liyh.myplayer.model.VBangItemBean
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.AnkoLogger
@@ -22,7 +21,7 @@ import java.util.*
 class AudioService : Service(), AnkoLogger {
     var mediaPlayer: MediaPlayer? = null
     var list: ArrayList<VBangItemBean>? = null
-    var position: Int = 0
+    var position: Int = -2
     val audioBinder by lazy { AudioBinder() }
     val sp by lazy { getSharedPreferences("config", Context.MODE_PRIVATE) }
 
@@ -46,8 +45,13 @@ class AudioService : Service(), AnkoLogger {
         info { "onStartCommand() is called" }
         intent?.let {
             list = intent.getParcelableArrayListExtra<VBangItemBean>("list")
-            position = intent.getIntExtra("position", 0)
-            audioBinder.playItem()
+            val pos = intent.getIntExtra("position", 0)
+            if (pos == position) {//是同一首歌
+                audioBinder.notfityUpdateUi()
+            } else {
+                position = pos
+                audioBinder.playItem()
+            }
         }
         return START_NOT_STICKY
     }
@@ -83,6 +87,7 @@ class AudioService : Service(), AnkoLogger {
 
         //播放结束监听
         override fun onCompletion(mp: MediaPlayer?) {
+            info { "播放结束" }
             playNextByMode()
         }
 
@@ -101,8 +106,10 @@ class AudioService : Service(), AnkoLogger {
                     }
                 }
                 MODE_SINGLE -> {
+                    notfityUpdateUi()
                     return
                 }
+                MODE_SINGLE_LOOP ->{}
                 MODE_RANDOM -> {
                     list?.let {
                         val tempPos = position
@@ -118,6 +125,7 @@ class AudioService : Service(), AnkoLogger {
         //设置播放进度
         override fun setProgress(progress: Int) {
             mediaPlayer?.seekTo(progress)
+            start()
         }
 
         //获取总进度
@@ -151,10 +159,12 @@ class AudioService : Service(), AnkoLogger {
         }
 
         fun playItem() {
-            mediaPlayer = mediaPlayer ?: MediaPlayer()
-            mediaPlayer?.let {
+            releaseMediaPlayer()
+            mediaPlayer = MediaPlayer()
+            mediaPlayer!!.let {
                 it.setOnPreparedListener(this)
                 it.setOnCompletionListener(this)
+                info { "当前播放的位置：$position" }
                 it.setDataSource(list?.get(position)?.data)
                 it.prepareAsync()
             }
@@ -173,10 +183,29 @@ class AudioService : Service(), AnkoLogger {
         }
 
         override fun prev() {
+            list?.let {
+                position = if (position == 0) it.size - 1
+                else position - 1
+                playItem()
+            }
         }
 
         override fun next() {
+            list?.let {
+
+                position = (position + 1) % it.size
+                playItem()
+
+            }
         }
 
+    }
+
+    private fun releaseMediaPlayer() {
+        mediaPlayer?.let {
+            it.reset()
+            it.release()
+        }
+        mediaPlayer = null
     }
 }

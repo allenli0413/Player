@@ -35,6 +35,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         if (fromUser) {
             iService?.setProgress(progress)
             updateProgressUi(progress % (duration + 1))
+            updatePlayStatusUi()
         }
     }
 
@@ -51,7 +52,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         when (msg?.what) {
             PROGRESS_MSG -> startUpdateProgress()
         }
-        return true
+        return false
     }
 
     var iService: IService? = null
@@ -72,10 +73,24 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
             R.id.mode -> {
                 updateMode()
             }
-            R.id.pre -> finish()
-            R.id.next -> finish()
+            R.id.pre -> playPre()
+            R.id.next -> playNext()
             R.id.playlist -> finish()
         }
+    }
+
+    /**
+     * 播放下一首
+     */
+    private fun playNext() {
+        iService?.next()
+    }
+
+    /**
+     * 播放上一首
+     */
+    private fun playPre() {
+        iService?.prev()
     }
 
     /**
@@ -112,8 +127,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         info { "isPlay = $isPlay, iService = $iService" }
         isPlay?.let {
             if (it) {
-                drawable?.start()
                 state.setImageResource(R.drawable.selector_btn_audio_play)
+                drawable?.start()
                 handle.sendEmptyMessage(PROGRESS_MSG)
             } else {
                 state.setImageResource(R.drawable.selector_btn_audio_pause)
@@ -135,13 +150,19 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
             //获取动画的drawable
             drawable = audio_anim.background as AnimationDrawable
             //开始动画
-            drawable?.start()
+            val isPlay = iService?.isPlaying()
+            isPlay?.let {
+                if (it) {
+                    drawable?.start()
+                    startUpdateProgress()
+                } else drawable?.stop()
+
+            }
             //获取总时长
             duration = iService?.getDuration() ?: 0
             //给进度条设置最大值
             progress_sk.max = duration
             //更新进度条
-            startUpdateProgress()
             updateModeUi()
         }
     }
@@ -154,14 +175,18 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         val progress: Int = iService?.getProgress() ?: 0
         //更新进度
         updateProgressUi(progress)
-        //定时获取进度
-        handle.sendEmptyMessageDelayed(PROGRESS_MSG, 1000)
+        if (progress < duration)
+            handle.sendEmptyMessageDelayed(PROGRESS_MSG, 1000)
+        else handle.removeMessages(PROGRESS_MSG)
     }
 
     //更新新进度ui
     private fun updateProgressUi(mPro: Int) {
+        info { "mPro = $mPro, duration = $duration" }
         val dur = StringUtil.handleTime(duration)
         val pro = StringUtil.handleTime(mPro)
+        info { "pro = $pro, dur = $dur" }
+
         progress.text = "$pro/$dur"
         progress_sk.progress = mPro
     }
