@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_setting"
-        class="com.zwyl.liyh.myplayer.ui.fragment.SettingFragment"
+        class="com.liyh.player.ui.fragment.SettingFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
