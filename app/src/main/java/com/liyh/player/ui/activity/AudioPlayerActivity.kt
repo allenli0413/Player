@@ -37,7 +37,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         iService?.playPosition(position)
     }
-//歌曲播放进度改变
+
+    //歌曲播放进度改变
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         //进度改变
         if (fromUser) {
@@ -165,14 +166,16 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100)
     fun startPlayAndUpdateUi(itemBean: VBangItemBean?) {
         itemBean?.let {
-            vBangItemBean = itemBean
-            audio_title.text = itemBean.displayName
-            artist.text = itemBean.artist
+            lyricView.setSongName(it.displayName)
+            vBangItemBean = it
+            audio_title.text = it.displayName
+            artist.text = it.artist
             //更新播放按钮的icon
             updatePlayStatusUi()
             //获取动画的drawable
             //获取总时长
             duration = iService?.getDuration() ?: 0
+            lyricView.duration = duration
             //给进度条设置最大值
             progress_sk.max = duration
             drawable = audio_anim.background as AnimationDrawable
@@ -199,7 +202,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         //更新进度
         updateProgressUi(progress)
         if (progress < duration)
-            handle.sendEmptyMessageDelayed(PROGRESS_MSG, 1000)
+            handle.sendEmptyMessage(PROGRESS_MSG)
         else handle.removeMessages(PROGRESS_MSG)
     }
 
@@ -212,6 +215,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
 
         progress.text = "$pro/$dur"
         progress_sk.progress = mPro
+        lyricView.updateProgress(mPro)
+
     }
 
     override fun getLayoutId(): Int = R.layout.activity_audio_palyer
@@ -234,6 +239,12 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, Handler.Callba
         next.setOnClickListener(this)
         playlist.setOnClickListener(this)
         progress_sk.setOnSeekBarChangeListener(this)
+        lyricView.setProgressListene {
+            //更新播放进度
+            iService?.setProgress(it)
+            //更新UI进度
+            updateProgressUi(it)
+        }
     }
 
     override fun onDestroy() {

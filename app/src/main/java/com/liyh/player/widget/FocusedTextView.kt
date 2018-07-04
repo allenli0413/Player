@@ -11,7 +11,8 @@ import android.widget.TextView
  * @time  17 时 28 分
  * @descrip :
  */
-class MarqueeTextView : TextView {
+class FocusedTextView : TextView {
+
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
